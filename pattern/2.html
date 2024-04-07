@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <style>
+      * {
+        margin: 0;
+      }
+      #canvas {
+        background-color: orangered;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: center;
+      }
+      #canvas2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="canvas"></div>
+    <div id="canvas2"></div>
+    <script>
+      let words = [];
+      let letters = [];
+      for (let i = 0; i < 200; i++) {
+        letters.push(`<div style="aspect-ratio: 1/1; width: 100%;"></div>`);
+      }
+      for (let i = 0; i < 100; i++) {
+        for (let j = 0; j < 5; j++) {
+          words.push(
+            `<div style="        animation: rotate 4s linear infinite; border: 100px dotted orange; border-radius:20px; aspect-ratio: 1/1; display: grid; grid-template-columns: repeat(4, 1fr); opacity: ${
+              (i + j) % 2 == 0 ? 0 : 1
+            };">${new Array(1)
+              .fill(8)
+              .map(
+                (item) =>
+                  `<span style="color:white; font-size:144px;" class="material-symbols-outlined">
+zoom_out_map
+</span>`
+              )
+              .join("")}</div>`
+          );
+        }
+      }
+      console.log(letters, words);
+      const canvas = document.querySelector("#canvas");
+      canvas.innerHTML = letters.join("");
+      const canvas2 = document.querySelector("#canvas2");
+      canvas2.innerHTML = words.join("");
+    </script>
+  </body>
+</html>
